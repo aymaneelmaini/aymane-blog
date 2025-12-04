@@ -2,26 +2,26 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #000000;
-  --muted: #f7f7f7;
+  --foreground: #171717;
+  --muted: #fafafa;
   --muted-foreground: #737373;
   --border: #e5e5e5;
   --accent: #7c3aed;
   --accent-foreground: #ffffff;
   --card: #ffffff;
-  --card-foreground: #000000;
+  --card-foreground: #171717;
 }
 
 .dark {
   --background: #0a0a0a;
-  --foreground: #fafafa;
+  --foreground: #ededed;
   --muted: #171717;
   --muted-foreground: #a3a3a3;
   --border: #262626;
   --accent: #8b5cf6;
   --accent-foreground: #ffffff;
   --card: #141414;
-  --card-foreground: #fafafa;
+  --card-foreground: #ededed;
 }
 
 * {
@@ -43,4 +43,98 @@ html {
 ::selection {
   background-color: var(--accent);
   color: white;
+}
+
+/* Dotted border utility - Figma style */
+.border-dashed-subtle {
+  border-style: dashed;
+  border-color: var(--border);
+}
+
+.border-dotted-subtle {
+  border-style: dotted;
+  border-color: var(--border);
+}
+
+/* Dotted separator line */
+.divider-dotted {
+  border-top: 2px dotted var(--border);
+}
+
+/* Dashed separator line */
+.divider-dashed {
+  border-top: 1px dashed var(--border);
+}
+
+/* Code Syntax Highlighting */
+.hljs {
+  background: transparent !important;
+}
+
+.dark .hljs-keyword,
+.dark .hljs-selector-tag,
+.dark .hljs-built_in,
+.dark .hljs-name,
+.dark .hljs-tag {
+  color: #c792ea;
+}
+
+.dark .hljs-string,
+.dark .hljs-title,
+.dark .hljs-section,
+.dark .hljs-attribute,
+.dark .hljs-literal,
+.dark .hljs-template-tag,
+.dark .hljs-template-variable,
+.dark .hljs-type,
+.dark .hljs-addition {
+  color: #c3e88d;
+}
+
+.dark .hljs-comment,
+.dark .hljs-quote,
+.dark .hljs-deletion,
+.dark .hljs-meta {
+  color: #676e95;
+}
+
+.dark .hljs-number,
+.dark .hljs-symbol,
+.dark .hljs-bullet,
+.dark .hljs-link {
+  color: #f78c6c;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-built_in,
+.hljs-name,
+.hljs-tag {
+  color: #7c3aed;
+}
+
+.hljs-string,
+.hljs-title,
+.hljs-section,
+.hljs-attribute,
+.hljs-literal,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-addition {
+  color: #16a34a;
+}
+
+.hljs-comment,
+.hljs-quote,
+.hljs-deletion,
+.hljs-meta {
+  color: #9ca3af;
+}
+
+.hljs-number,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-link {
+  color: #ea580c;
 }

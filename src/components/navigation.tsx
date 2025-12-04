@@ -8,10 +8,10 @@ import { cn } from '@/lib/utils'
 import { Menu, X } from 'lucide-react'
 
 const navLinks = [
-    { href: '#projects', label: 'Projects' },
-    { href: '#blog', label: 'Blog' },
-    { href: '#experience', label: 'Experience' },
-    { href: '#contact', label: 'Contact' },
+    { href: '/projects', label: 'Projects' },
+    { href: '/blog', label: 'Blog' },
+    { href: '/experience', label: 'Experience' },
+    { href: '/contact', label: 'Contact' },
 ]
 
 export function Navigation() {

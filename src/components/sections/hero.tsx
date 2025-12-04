@@ -9,7 +9,7 @@ export function HeroSection() {
             <Container>
                 <div className="flex flex-col items-start gap-8">
                     {/* Status Badge */}
-                    <div className="flex items-center gap-2 rounded-full border border-border bg-muted px-4 py-1.5">
+                    <div className="flex items-center gap-2 rounded-full border border-dashed border-border px-4 py-1.5">
                         <span className="relative flex h-2 w-2">
                             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-75"></span>
                             <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
