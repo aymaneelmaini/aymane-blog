@@ -3,27 +3,33 @@ import { Container } from '@/components/ui/container'
 import { Button } from '@/components/ui/button'
 import { db } from '@/lib/db'
 import Link from 'next/link'
-import { ArrowLeft, Plus, Edit, Eye, EyeOff, Star } from 'lucide-react'
+import { ArrowLeft, Plus, Edit, Eye, EyeOff, Clock } from 'lucide-react'
 
-async function getProjects() {
-    return db.project.findMany({
-        orderBy: [{ featured: 'desc' }, { order: 'asc' }],
+async function getPosts() {
+    return db.post.findMany({
+        orderBy: { createdAt: 'desc' },
         include: {
-            techStack: {
-                include: { tech: true },
-            },
+            tags: { include: { tag: true } },
         },
     })
 }
 
-export default async function AdminProjectsPage() {
+export default async function AdminPostsPage() {
     await requireAuth()
-    const projects = await getProjects()
+    const posts = await getPosts()
+
+    const formatDate = (date: Date | null) => {
+        if (!date) return 'Draft'
+        return new Intl.DateTimeFormat('en-US', {
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric',
+        }).format(new Date(date))
+    }
 
     return (
         <main className="min-h-screen py-12">
             <Container>
-                {/* Header */}
                 <div className="mb-8">
                     <Link
                         href="/admin"
@@ -33,57 +39,55 @@ export default async function AdminProjectsPage() {
                         Back to Dashboard
                     </Link>
                     <div className="flex items-center justify-between">
-                        <h1 className="text-3xl font-bold">Projects</h1>
+                        <h1 className="text-3xl font-bold">Blog Posts</h1>
                         <Button asChild>
-                            <Link href="/admin/projects/new">
+                            <Link href="/admin/posts/new">
                                 <Plus className="mr-2 h-4 w-4" />
-                                New Project
+                                New Post
                             </Link>
                         </Button>
                     </div>
                 </div>
 
-                {/* Projects List */}
                 <div className="rounded-xl border border-border bg-card">
-                    {projects.length === 0 ? (
+                    {posts.length === 0 ? (
                         <div className="p-12 text-center">
-                            <p className="text-muted-foreground">No projects yet.</p>
+                            <p className="text-muted-foreground">No posts yet.</p>
                             <Button className="mt-4" asChild>
-                                <Link href="/admin/projects/new">Create your first project</Link>
+                                <Link href="/admin/posts/new">Create your first post</Link>
                             </Button>
                         </div>
                     ) : (
                         <div className="divide-y divide-border">
-                            {projects.map((project) => (
+                            {posts.map((post) => (
                                 <Link
-                                    key={project.id}
-                                    href={`/admin/projects/${project.id}`}
+                                    key={post.id}
+                                    href={`/admin/posts/${post.id}`}
                                     className="flex items-center justify-between p-4 transition-colors hover:bg-muted/50"
                                 >
-                                    <div className="flex items-center gap-4">
-                                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-muted text-lg font-bold text-muted-foreground">
-                                            {project.title.charAt(0)}
-                                        </div>
-                                        <div>
-                                            <div className="flex items-center gap-2">
-                                                <h3 className="font-medium">{project.title}</h3>
-                                                {project.featured && (
-                                                    <Star className="h-3.5 w-3.5 fill-yellow-500 text-yellow-500" />
-                                                )}
-                                            </div>
-                                            <p className="text-sm text-muted-foreground">
-                                                {project.techStack.map((pt) => pt.tech.name).join(', ') || 'No technologies'}
-                                            </p>
+                                    <div className="flex-1">
+                                        <h3 className="font-medium">{post.title}</h3>
+                                        <div className="mt-1 flex items-center gap-3 text-sm text-muted-foreground">
+                                            <span>{formatDate(post.publishedAt)}</span>
+                                            <span className="flex items-center gap-1">
+                                                <Clock className="h-3 w-3" />
+                                                {post.readingTime} min
+                                            </span>
+                                            {post.tags.length > 0 && (
+                                                <span>
+                                                    {post.tags.map((t) => t.tag.name).join(', ')}
+                                                </span>
+                                            )}
                                         </div>
                                     </div>
                                     <div className="flex items-center gap-3">
                                         <span
-                                            className={`flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium ${project.published
-                                                ? 'bg-green-500/10 text-green-600 dark:text-green-400'
-                                                : 'bg-yellow-500/10 text-yellow-600 dark:text-yellow-400'
+                                            className={`flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium ${post.published
+                                                    ? 'bg-green-500/10 text-green-600 dark:text-green-400'
+                                                    : 'bg-yellow-500/10 text-yellow-600 dark:text-yellow-400'
                                                 }`}
                                         >
-                                            {project.published ? (
+                                            {post.published ? (
                                                 <>
                                                     <Eye className="h-3 w-3" /> Published
                                                 </>

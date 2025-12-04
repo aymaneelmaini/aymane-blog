@@ -1,7 +1,8 @@
 import { Container } from '@/components/ui/container'
 import { SectionHeader } from '@/components/ui/section-header'
+import { db } from '@/lib/db'
 
-const skillCategories = [
+const defaultSkillCategories = [
     {
         title: 'Languages',
         skills: ['Java', 'Kotlin', 'TypeScript', 'JavaScript', 'PHP', 'C/C++'],
@@ -28,7 +29,34 @@ const skillCategories = [
     },
 ]
 
-export function SkillsSection() {
+async function getSkills() {
+    const skills = await db.skill.findMany({
+        orderBy: [{ category: 'asc' }, { order: 'asc' }, { name: 'asc' }],
+    })
+
+    if (skills.length === 0) {
+        return null
+    }
+
+    // Group by category
+    const grouped = skills.reduce((acc, skill) => {
+        if (!acc[skill.category]) {
+            acc[skill.category] = []
+        }
+        acc[skill.category].push(skill.name)
+        return acc
+    }, {} as Record<string, string[]>)
+
+    return Object.entries(grouped).map(([title, skills]) => ({
+        title,
+        skills,
+    }))
+}
+
+export async function SkillsSection() {
+    const dbSkills = await getSkills()
+    const skillCategories = dbSkills || defaultSkillCategories
+
     return (
         <section id="skills" className="border-t border-dashed border-border py-24 sm:py-32">
             <Container>

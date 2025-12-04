@@ -42,10 +42,10 @@ export function HeroSection() {
                     {/* CTA Buttons */}
                     <div className="flex flex-wrap items-center gap-4">
                         <Button size="lg" asChild>
-                            <Link href="#projects">View Projects</Link>
+                            <Link href="/projects">View Projects</Link>
                         </Button>
                         <Button variant="secondary" size="lg" asChild>
-                            <Link href="#blog">Read Blog</Link>
+                            <Link href="/blog">Read Blog</Link>
                         </Button>
                     </div>
 

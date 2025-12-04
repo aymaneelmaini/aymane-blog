@@ -7,6 +7,7 @@ async function getProjects() {
     const projects = await db.project.findMany({
         where: { published: true },
         orderBy: [{ featured: 'desc' }, { order: 'asc' }],
+        take: 4,
         include: {
             techStack: {
                 include: {

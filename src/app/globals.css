@@ -138,3 +138,159 @@ html {
 .hljs-link {
   color: #ea580c;
 }
+
+/* blogs */
+
+.blog-content {
+  font-size: 17px;
+  line-height: 2.1;
+  color: var(--muted-foreground);
+}
+
+.blog-content > * + * {
+  margin-top: 2rem;
+}
+
+.blog-content p {
+  margin-bottom: 2rem;
+  line-height: 2.1;
+}
+
+.blog-content h1,
+.blog-content h2,
+.blog-content h3,
+.blog-content h4 {
+  color: var(--foreground);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.blog-content h1 {
+  font-size: 2rem;
+  margin-top: 0;
+  margin-bottom: 2rem;
+}
+
+.blog-content h2 {
+  font-size: 1.5rem;
+  margin-top: 4rem;
+  margin-bottom: 1.5rem;
+}
+
+.blog-content h3 {
+  font-size: 1.25rem;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+.blog-content h4 {
+  font-size: 1.1rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Code blocks */
+.blog-content pre {
+  margin: 3rem 0 !important;
+  padding: 1.5rem !important;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--muted) !important;
+  overflow-x: auto;
+  line-height: 1.8 !important;
+  font-size: 14px;
+}
+
+.blog-content pre code {
+  background: transparent !important;
+  padding: 0 !important;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* Inline code */
+.blog-content code {
+  background: var(--muted);
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.9em;
+}
+
+/* Lists */
+.blog-content ul,
+.blog-content ol {
+  margin: 2rem 0;
+  padding-left: 2rem;
+}
+
+.blog-content li {
+  margin: 1rem 0;
+  line-height: 2;
+}
+
+.blog-content li::marker {
+  color: var(--muted-foreground);
+}
+
+/* Blockquotes */
+.blog-content blockquote {
+  margin: 3rem 0;
+  padding: 1.5rem 2rem;
+  border-left: 4px solid var(--accent);
+  background: var(--muted);
+  border-radius: 0 8px 8px 0;
+  line-height: 1.9;
+}
+
+.blog-content blockquote p {
+  margin: 0;
+}
+
+/* Links */
+.blog-content a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.blog-content a:hover {
+  text-decoration: underline;
+}
+
+/* Strong */
+.blog-content strong {
+  color: var(--foreground);
+  font-weight: 600;
+}
+
+/* Horizontal rule */
+.blog-content hr {
+  margin: 4rem 0;
+  border: none;
+  border-top: 1px dashed var(--border);
+}
+
+/* Images */
+.blog-content img {
+  margin: 3rem 0;
+  border-radius: 12px;
+  max-width: 100%;
+}
+
+/* Tables */
+.blog-content table {
+  margin: 3rem 0;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.blog-content th,
+.blog-content td {
+  padding: 1rem;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+
+.blog-content th {
+  background: var(--muted);
+  font-weight: 600;
+}

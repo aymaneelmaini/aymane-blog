@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { Container } from '@/components/ui/container'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { cn } from '@/lib/utils'
@@ -10,13 +11,14 @@ import { Menu, X } from 'lucide-react'
 const navLinks = [
     { href: '/projects', label: 'Projects' },
     { href: '/blog', label: 'Blog' },
-    { href: '/experience', label: 'Experience' },
-    { href: '/contact', label: 'Contact' },
+    { href: '/#experience', label: 'Experience' },
+    { href: '/#contact', label: 'Contact' },
 ]
 
 export function Navigation() {
     const [isScrolled, setIsScrolled] = useState(false)
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+    const pathname = usePathname()
 
     useEffect(() => {
         const handleScroll = () => {
@@ -25,6 +27,11 @@ export function Navigation() {
         window.addEventListener('scroll', handleScroll)
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
+
+    // Close mobile menu on route change
+    useEffect(() => {
+        setIsMobileMenuOpen(false)
+    }, [pathname])
 
     return (
         <header
@@ -47,15 +54,26 @@ export function Navigation() {
 
                     {/* Desktop Navigation */}
                     <div className="hidden items-center gap-1 md:flex">
-                        {navLinks.map((link) => (
-                            <Link
-                                key={link.href}
-                                href={link.href}
-                                className="rounded-lg px-4 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-                            >
-                                {link.label}
-                            </Link>
-                        ))}
+                        {navLinks.map((link) => {
+                            const isActive =
+                                link.href === pathname ||
+                                (link.href.startsWith('/#') && pathname === '/')
+
+                            return (
+                                <Link
+                                    key={link.href}
+                                    href={link.href}
+                                    className={cn(
+                                        'rounded-lg px-4 py-2 text-sm transition-colors',
+                                        isActive
+                                            ? 'text-foreground'
+                                            : 'text-muted-foreground hover:bg-muted hover:text-foreground'
+                                    )}
+                                >
+                                    {link.label}
+                                </Link>
+                            )
+                        })}
                         <div className="ml-2">
                             <ThemeToggle />
                         </div>
@@ -86,7 +104,6 @@ export function Navigation() {
                                 <Link
                                     key={link.href}
                                     href={link.href}
-                                    onClick={() => setIsMobileMenuOpen(false)}
                                     className="rounded-lg px-4 py-3 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                                 >
                                     {link.label}
