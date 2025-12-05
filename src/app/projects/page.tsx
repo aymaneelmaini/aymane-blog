@@ -12,7 +12,6 @@ export const metadata: Metadata = {
     description: 'A collection of projects I\'ve built, from payment systems to full-stack applications.',
 }
 
-// Revalidate every hour
 export const revalidate = 3600
 
 async function getProjects() {
@@ -85,7 +84,6 @@ export default async function ProjectsPage() {
             <Navigation />
             <main className="min-h-screen pt-24">
                 <Container>
-                    {/* Header */}
                     <div className="mb-16 max-w-2xl">
                         <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">Projects</h1>
                         <p className="mt-4 text-lg text-muted-foreground">
@@ -94,7 +92,6 @@ export default async function ProjectsPage() {
                         </p>
                     </div>
 
-                    {/* Featured Projects from DB */}
                     {projects.length > 0 && (
                         <section className="mb-24">
                             <h2 className="mb-8 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
@@ -118,7 +115,6 @@ export default async function ProjectsPage() {
                         </section>
                     )}
 
-                    {/* GitHub Repos */}
                     {githubRepos.length > 0 && (
                         <section className="border-t border-dashed border-border pb-24 pt-16">
                             <div className="mb-8 flex items-center justify-between">
@@ -141,7 +137,6 @@ export default async function ProjectsPage() {
                         </section>
                     )}
 
-                    {/* Empty State */}
                     {projects.length === 0 && githubRepos.length === 0 && (
                         <div className="py-24 text-center">
                             <p className="text-muted-foreground">No projects to show yet.</p>

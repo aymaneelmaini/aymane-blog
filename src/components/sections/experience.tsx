@@ -11,41 +11,9 @@ async function getExperiences() {
 export async function ExperienceSection() {
     const experiences = await getExperiences()
 
-    const displayExperiences =
-        experiences.length > 0
-            ? experiences
-            : [
-                {
-                    id: '1',
-                    company: 'ProgressSoft Corporation',
-                    role: 'Associate Software Engineer',
-                    description:
-                        'Develop and maintain backend APIs and microservices for global payment processing platform. Build scalable financial services using Java, Kotlin, and Spring Boot with Domain-Driven Design.',
-                    startDate: new Date('2024-12-01'),
-                    endDate: null,
-                    current: true,
-                },
-                {
-                    id: '2',
-                    company: 'Foodeals',
-                    role: 'Full Stack Developer Intern',
-                    description:
-                        'Developed full-stack applications using Spring Boot for backend and Angular for frontend. Implemented RESTful APIs and responsive user interfaces.',
-                    startDate: new Date('2024-05-01'),
-                    endDate: new Date('2024-07-01'),
-                    current: false,
-                },
-                {
-                    id: '3',
-                    company: 'ICF Communication',
-                    role: 'Front-end Developer Intern',
-                    description:
-                        'Built responsive web applications using HTML5, JavaScript, CSS3, and Tailwind CSS framework with focus on user experience.',
-                    startDate: new Date('2023-04-01'),
-                    endDate: new Date('2023-06-01'),
-                    current: false,
-                },
-            ]
+    if (experiences.length === 0) {
+        return null
+    }
 
     const formatDate = (date: Date) => {
         return new Intl.DateTimeFormat('en-US', {
@@ -66,7 +34,7 @@ export async function ExperienceSection() {
                     <div className="absolute left-0 top-0 hidden h-full w-px border-l border-dashed border-border sm:left-[7px] sm:block" />
 
                     <div className="space-y-8">
-                        {displayExperiences.map((exp) => (
+                        {experiences.map((exp) => (
                             <div key={exp.id} className="relative pl-0 sm:pl-12">
                                 <div className="absolute left-0 top-6 hidden h-4 w-4 items-center justify-center sm:flex">
                                     <div

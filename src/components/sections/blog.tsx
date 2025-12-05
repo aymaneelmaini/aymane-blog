@@ -26,44 +26,9 @@ async function getPosts() {
 export async function BlogSection() {
     const posts = await getPosts()
 
-    const displayPosts =
-        posts.length > 0
-            ? posts
-            : [
-                {
-                    id: '1',
-                    title: 'Building Scalable Microservices with Spring Boot',
-                    slug: 'scalable-microservices-spring-boot',
-                    excerpt:
-                        'Learn how to design and implement microservices that can handle millions of transactions.',
-                    publishedAt: new Date('2025-01-15'),
-                    readingTime: 8,
-                    coverUrl: null,
-                    tags: [{ name: 'Java' }, { name: 'Spring Boot' }],
-                },
-                {
-                    id: '2',
-                    title: 'Payment Processing: Lessons from the Trenches',
-                    slug: 'payment-processing-lessons',
-                    excerpt:
-                        'Insights from building payment systems that handle SWIFT integrations and Visa transactions at scale.',
-                    publishedAt: new Date('2025-01-10'),
-                    readingTime: 6,
-                    coverUrl: null,
-                    tags: [{ name: 'Fintech' }, { name: 'Backend' }],
-                },
-                {
-                    id: '3',
-                    title: 'From Legacy to Modern: Refactoring Strategies',
-                    slug: 'legacy-refactoring-strategies',
-                    excerpt:
-                        'Practical approaches to refactoring legacy codebases while maintaining backward compatibility.',
-                    publishedAt: new Date('2025-01-05'),
-                    readingTime: 10,
-                    coverUrl: null,
-                    tags: [{ name: 'Refactoring' }, { name: 'Best Practices' }],
-                },
-            ]
+    if (posts.length === 0) {
+        return null
+    }
 
     return (
         <section id="blog" className="border-t border-dashed border-border py-24 sm:py-32">
@@ -79,7 +44,7 @@ export async function BlogSection() {
                 </div>
 
                 <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                    {displayPosts.map((post) => (
+                    {posts.map((post) => (
                         <BlogCard
                             key={post.id}
                             title={post.title}

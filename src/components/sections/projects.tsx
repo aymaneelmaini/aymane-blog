@@ -26,62 +26,9 @@ async function getProjects() {
 export async function ProjectsSection() {
     const projects = await getProjects()
 
-    const displayProjects =
-        projects.length > 0
-            ? projects
-            : [
-                {
-                    id: '1',
-                    title: 'Payment Processing Platform',
-                    slug: 'payment-platform',
-                    description:
-                        'Scalable microservices architecture handling SWIFT integrations and Visa transactions for global financial operations.',
-                    thumbnailUrl: null,
-                    liveUrl: null,
-                    githubUrl: 'https://github.com/aymaneelmaini',
-                    techStack: [
-                        { name: 'Java' },
-                        { name: 'Spring Boot' },
-                        { name: 'Kafka' },
-                        { name: 'PostgreSQL' },
-                    ],
-                    featured: true,
-                },
-                {
-                    id: '2',
-                    title: 'Food Deals Platform',
-                    slug: 'food-deals',
-                    description:
-                        'Full-stack application connecting users with local restaurant deals. Built with Spring Boot and Angular.',
-                    thumbnailUrl: null,
-                    liveUrl: null,
-                    githubUrl: 'https://github.com/aymaneelmaini',
-                    techStack: [
-                        { name: 'Spring Boot' },
-                        { name: 'Angular' },
-                        { name: 'Docker' },
-                        { name: 'MySQL' },
-                    ],
-                    featured: false,
-                },
-                {
-                    id: '3',
-                    title: 'Developer Portfolio',
-                    slug: 'portfolio',
-                    description:
-                        'Modern portfolio website built with Next.js, featuring dark mode, blog with Markdown, and admin panel.',
-                    thumbnailUrl: null,
-                    liveUrl: 'https://aymaneelmaini.vercel.app',
-                    githubUrl: 'https://github.com/aymaneelmaini',
-                    techStack: [
-                        { name: 'Next.js' },
-                        { name: 'TypeScript' },
-                        { name: 'Prisma' },
-                        { name: 'Tailwind' },
-                    ],
-                    featured: false,
-                },
-            ]
+    if (projects.length === 0) {
+        return null
+    }
 
     return (
         <section id="projects" className="py-24 sm:py-32">
@@ -92,7 +39,7 @@ export async function ProjectsSection() {
                 />
 
                 <div className="grid gap-6 sm:grid-cols-2">
-                    {displayProjects.map((project) => (
+                    {projects.map((project) => (
                         <ProjectCard
                             key={project.id}
                             title={project.title}

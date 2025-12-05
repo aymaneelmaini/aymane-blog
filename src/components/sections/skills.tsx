@@ -2,33 +2,6 @@ import { Container } from '@/components/ui/container'
 import { SectionHeader } from '@/components/ui/section-header'
 import { db } from '@/lib/db'
 
-const defaultSkillCategories = [
-    {
-        title: 'Languages',
-        skills: ['Java', 'Kotlin', 'TypeScript', 'JavaScript', 'PHP', 'C/C++'],
-    },
-    {
-        title: 'Backend',
-        skills: ['Spring Boot', 'Spring MVC', 'JPA/Hibernate', 'JUnit 5', 'Mockito', 'Laravel'],
-    },
-    {
-        title: 'Frontend',
-        skills: ['React', 'Next.js', 'Angular', 'Tailwind CSS'],
-    },
-    {
-        title: 'Databases',
-        skills: ['PostgreSQL', 'MySQL', 'MongoDB', 'Oracle DB', 'Oracle AQ'],
-    },
-    {
-        title: 'DevOps & Tools',
-        skills: ['Docker', 'Kubernetes', 'GCP', 'GitHub Actions', 'Maven', 'Gradle'],
-    },
-    {
-        title: 'Architecture',
-        skills: ['Microservices', 'DDD', 'TDD', 'Design Patterns', 'REST APIs'],
-    },
-]
-
 async function getSkills() {
     const skills = await db.skill.findMany({
         orderBy: [{ category: 'asc' }, { order: 'asc' }, { name: 'asc' }],
@@ -38,7 +11,6 @@ async function getSkills() {
         return null
     }
 
-    // Group by category
     const grouped = skills.reduce((acc, skill) => {
         if (!acc[skill.category]) {
             acc[skill.category] = []
@@ -54,8 +26,11 @@ async function getSkills() {
 }
 
 export async function SkillsSection() {
-    const dbSkills = await getSkills()
-    const skillCategories = dbSkills || defaultSkillCategories
+    const skillCategories = await getSkills()
+
+    if (!skillCategories) {
+        return null
+    }
 
     return (
         <section id="skills" className="border-t border-dashed border-border py-24 sm:py-32">
