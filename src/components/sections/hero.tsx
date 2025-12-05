@@ -2,7 +2,7 @@ import { Container } from '@/components/ui/container'
 import { Button } from '@/components/ui/button'
 import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react'
 import Link from 'next/link'
-import { socialMediaLinks } from '@/constants/social-media'
+import { socialMediaLinks } from '@/constants/links'
 
 export function HeroSection() {
     return (
@@ -48,7 +48,7 @@ export function HeroSection() {
 
                     <div className="flex items-center gap-1 pt-4">
                         <Link
-                            href="https://github.com/aymaneelmaini"
+                            href={socialMediaLinks.github.link}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="flex h-10 w-10 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
@@ -57,7 +57,7 @@ export function HeroSection() {
                             <Github className="h-5 w-5" />
                         </Link>
                         <Link
-                            href="https://linkedin.com/in/aymaneelmaini"
+                            href={socialMediaLinks.linkedin.link}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="flex h-10 w-10 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
@@ -66,7 +66,7 @@ export function HeroSection() {
                             <Linkedin className="h-5 w-5" />
                         </Link>
                         <Link
-                            href="mailto:elmainiaymane03@gmail.com"
+                            href={socialMediaLinks.mail.link}
                             className="flex h-10 w-10 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                             aria-label="Email"
                         >

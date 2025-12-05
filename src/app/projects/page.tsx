@@ -5,6 +5,7 @@ import { ProjectCard } from '@/components/ui/project-card'
 import { GitHubRepoCard } from '@/components/ui/github-repo-card'
 import { db } from '@/lib/db'
 import { Metadata } from 'next'
+import { GITHUB_REPOSITORY_URL } from '@/constants/links'
 
 export const metadata: Metadata = {
     title: 'Projects | Aymane El Maini',
@@ -49,14 +50,12 @@ interface GitHubRepo {
 async function getGitHubRepos(): Promise<GitHubRepo[]> {
     try {
         const response = await fetch(
-            'https://api.github.com/users/AymaneTech/repos?sort=updated&per_page=100',
+            GITHUB_REPOSITORY_URL,
             {
                 headers: {
                     Accept: 'application/vnd.github.v3+json',
-                    // Add token if you have one for higher rate limits
-                    // Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
                 },
-                next: { revalidate: 3600 }, // Cache for 1 hour
+                next: { revalidate: 3600 }, 
             }
         )
 
@@ -67,10 +66,8 @@ async function getGitHubRepos(): Promise<GitHubRepo[]> {
 
         const repos: GitHubRepo[] = await response.json()
 
-        // Filter out forks and archived repos, sort by stars then updated
         return repos
             .filter((repo) => !repo.fork && !repo.archived)
-            .sort((a, b) => b.stargazers_count - a.stargazers_count)
     } catch (error) {
         console.error('Failed to fetch GitHub repos:', error)
         return []
