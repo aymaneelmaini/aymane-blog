@@ -94,7 +94,6 @@ export function SkillForm({ skill }: SkillFormProps) {
                 </div>
             )}
 
-            {/* Name */}
             <div className="space-y-2">
                 <label htmlFor="name" className="text-sm font-medium">
                     Skill Name <span className="text-red-500">*</span>
@@ -110,7 +109,6 @@ export function SkillForm({ skill }: SkillFormProps) {
                 />
             </div>
 
-            {/* Category */}
             <div className="space-y-2">
                 <label htmlFor="category" className="text-sm font-medium">
                     Category <span className="text-red-500">*</span>
@@ -130,7 +128,6 @@ export function SkillForm({ skill }: SkillFormProps) {
                 </select>
             </div>
 
-            {/* Icon URL */}
             <div className="space-y-2">
                 <label htmlFor="iconUrl" className="text-sm font-medium">
                     Icon URL <span className="text-muted-foreground">(optional)</span>
@@ -148,7 +145,6 @@ export function SkillForm({ skill }: SkillFormProps) {
                 </p>
             </div>
 
-            {/* Order */}
             <div className="space-y-2">
                 <label htmlFor="order" className="text-sm font-medium">
                     Display Order
@@ -165,7 +161,6 @@ export function SkillForm({ skill }: SkillFormProps) {
                 </p>
             </div>
 
-            {/* Actions */}
             <div className="flex items-center justify-between border-t border-dashed border-border pt-6">
                 <div>
                     {isEditing && (

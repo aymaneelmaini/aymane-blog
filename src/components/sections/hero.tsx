@@ -2,13 +2,13 @@ import { Container } from '@/components/ui/container'
 import { Button } from '@/components/ui/button'
 import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react'
 import Link from 'next/link'
+import { socialMediaLinks } from '@/constants/social-media'
 
 export function HeroSection() {
     return (
         <section className="relative flex min-h-screen items-center pt-16">
             <Container>
                 <div className="flex flex-col items-start gap-8">
-                    {/* Status Badge */}
                     <div className="flex items-center gap-2 rounded-full border border-dashed border-border px-4 py-1.5">
                         <span className="relative flex h-2 w-2">
                             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-75"></span>
@@ -19,7 +19,6 @@ export function HeroSection() {
                         </span>
                     </div>
 
-                    {/* Main Heading */}
                     <div className="max-w-3xl space-y-4">
                         <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
                             Hi, I&apos;m Aymane
@@ -32,14 +31,12 @@ export function HeroSection() {
                         </p>
                     </div>
 
-                    {/* Description */}
                     <p className="max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
                         Associate Software Engineer at ProgressSoft, specializing in Java & Kotlin.
                         I build microservices and payment processing platforms handling SWIFT
                         integrations and Visa transactions.
                     </p>
 
-                    {/* CTA Buttons */}
                     <div className="flex flex-wrap items-center gap-4">
                         <Button size="lg" asChild>
                             <Link href="/projects">View Projects</Link>
@@ -49,7 +46,6 @@ export function HeroSection() {
                         </Button>
                     </div>
 
-                    {/* Social Links */}
                     <div className="flex items-center gap-1 pt-4">
                         <Link
                             href="https://github.com/aymaneelmaini"
@@ -79,7 +75,6 @@ export function HeroSection() {
                     </div>
                 </div>
 
-                {/* Scroll Indicator */}
                 <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
                     <Link
                         href="#projects"

@@ -2,6 +2,7 @@ import { Container } from '@/components/ui/container'
 import { Button } from '@/components/ui/button'
 import { Github, Linkedin, Mail, MapPin } from 'lucide-react'
 import Link from 'next/link'
+import { socialMediaLinks } from '@/constants/social-media'
 
 export function ContactSection() {
     return (
@@ -16,42 +17,36 @@ export function ContactSection() {
                         projects, or just having a chat about software engineering.
                     </p>
 
-                    {/* Location */}
                     <div className="mt-6 flex items-center justify-center gap-2 text-muted-foreground">
                         <MapPin className="h-4 w-4" />
                         <span>Marrakesh, Morocco</span>
                     </div>
 
-                    {/* CTA */}
                     <div className="mt-8">
                         <Button size="lg" asChild>
-                            <Link href="mailto:elmainiaymane03@gmail.com">
+                            <Link href={socialMediaLinks.find(link => link.label === 'Mail')?.link || 'mailto:elmainiaymane03@gmail.com'}>
                                 <Mail className="mr-2 h-4 w-4" />
                                 Get in touch
                             </Link>
                         </Button>
                     </div>
 
-                    {/* Social Links */}
                     <div className="mt-12 flex items-center justify-center gap-4">
-                        <Link
-                            href="https://github.com/aymaneelmaini"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-2 rounded-lg border border-border px-4 py-2 text-sm text-muted-foreground transition-colors hover:border-foreground/20 hover:text-foreground"
-                        >
-                            <Github className="h-4 w-4" />
-                            GitHub
-                        </Link>
-                        <Link
-                            href="https://linkedin.com/in/aymaneelmaini"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-2 rounded-lg border border-border px-4 py-2 text-sm text-muted-foreground transition-colors hover:border-foreground/20 hover:text-foreground"
-                        >
-                            <Linkedin className="h-4 w-4" />
-                            LinkedIn
-                        </Link>
+                        {socialMediaLinks.filter(link => link.label === 'Github' || link.label === 'Linkedin').map((link) => {
+                            const Icon = link.label === 'Github' ? Github : Linkedin
+                            return (
+                                <Link
+                                    key={link.label}
+                                    href={link.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center gap-2 rounded-lg border border-border px-4 py-2 text-sm text-muted-foreground transition-colors hover:border-foreground/20 hover:text-foreground"
+                                >
+                                    <Icon className="h-4 w-4" />
+                                    {link.label === 'Github' ? 'GitHub' : 'LinkedIn'}
+                                </Link>
+                            )
+                        })}
                     </div>
                 </div>
             </Container>

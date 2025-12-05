@@ -4,20 +4,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Loader2, Trash2 } from 'lucide-react'
-
-interface ExperienceFormProps {
-    experience?: {
-        id: string
-        company: string
-        role: string
-        description: string | null
-        logoUrl: string | null
-        startDate: Date
-        endDate: Date | null
-        current: boolean
-        order: number
-    }
-}
+import { ExperienceFormProps } from '@/types/forms'
 
 export function ExperienceForm({ experience }: ExperienceFormProps) {
     const router = useRouter()
@@ -112,7 +99,6 @@ export function ExperienceForm({ experience }: ExperienceFormProps) {
                 </div>
             )}
 
-            {/* Company & Role */}
             <div className="grid gap-6 sm:grid-cols-2">
                 <div className="space-y-2">
                     <label htmlFor="company" className="text-sm font-medium">
@@ -145,7 +131,6 @@ export function ExperienceForm({ experience }: ExperienceFormProps) {
                 </div>
             </div>
 
-            {/* Description */}
             <div className="space-y-2">
                 <label htmlFor="description" className="text-sm font-medium">
                     Description
@@ -159,7 +144,6 @@ export function ExperienceForm({ experience }: ExperienceFormProps) {
                 />
             </div>
 
-            {/* Logo URL */}
             <div className="space-y-2">
                 <label htmlFor="logoUrl" className="text-sm font-medium">
                     Company Logo URL
@@ -174,7 +158,6 @@ export function ExperienceForm({ experience }: ExperienceFormProps) {
                 />
             </div>
 
-            {/* Dates */}
             <div className="grid gap-6 sm:grid-cols-2">
                 <div className="space-y-2">
                     <label htmlFor="startDate" className="text-sm font-medium">
@@ -205,7 +188,6 @@ export function ExperienceForm({ experience }: ExperienceFormProps) {
                 </div>
             </div>
 
-            {/* Options */}
             <div className="flex flex-wrap gap-6">
                 <label className="flex items-center gap-2 cursor-pointer">
                     <input
@@ -231,7 +213,6 @@ export function ExperienceForm({ experience }: ExperienceFormProps) {
                 </div>
             </div>
 
-            {/* Actions */}
             <div className="flex items-center justify-between border-t border-dashed border-border pt-6">
                 <div>
                     {isEditing && (

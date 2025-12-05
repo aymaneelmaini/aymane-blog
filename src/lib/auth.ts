@@ -5,7 +5,6 @@ import { redirect } from 'next/navigation'
 const secretKey = process.env.AUTH_SECRET!
 const encodedKey = new TextEncoder().encode(secretKey)
 
-// Session duration: 7 days
 const SESSION_DURATION = 7 * 24 * 60 * 60 * 1000
 
 interface SessionPayload {

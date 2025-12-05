@@ -5,22 +5,7 @@ import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { ImageUpload } from '@/components/ui/image-upload'
 import { Loader2, Trash2 } from 'lucide-react'
-
-interface PostFormProps {
-    post?: {
-        id: string
-        title: string
-        slug: string
-        excerpt: string
-        content: string
-        coverUrl: string | null
-        readingTime: number
-        published: boolean
-        publishedAt: Date | null
-        tags: { tag: { id: string; name: string } }[]
-    }
-    allTags: { id: string; name: string }[]
-}
+import { PostFormProps } from '@/types/forms'
 
 export function PostForm({ post, allTags }: PostFormProps) {
     const router = useRouter()
@@ -160,7 +145,6 @@ export function PostForm({ post, allTags }: PostFormProps) {
                 </div>
             )}
 
-            {/* Title & Slug */}
             <div className="grid gap-6 sm:grid-cols-2">
                 <div className="space-y-2">
                     <label htmlFor="title" className="text-sm font-medium">
@@ -193,7 +177,6 @@ export function PostForm({ post, allTags }: PostFormProps) {
                 </div>
             </div>
 
-            {/* Cover Image Upload */}
             <div className="space-y-2">
                 <label className="text-sm font-medium">Cover Image</label>
                 <ImageUpload
@@ -203,7 +186,6 @@ export function PostForm({ post, allTags }: PostFormProps) {
                 />
             </div>
 
-            {/* Excerpt */}
             <div className="space-y-2">
                 <label htmlFor="excerpt" className="text-sm font-medium">
                     Excerpt <span className="text-red-500">*</span>
@@ -218,7 +200,6 @@ export function PostForm({ post, allTags }: PostFormProps) {
                 />
             </div>
 
-            {/* Content */}
             <div className="space-y-2">
                 <div className="flex items-center justify-between">
                     <label htmlFor="content" className="text-sm font-medium">
@@ -240,7 +221,6 @@ Write your content in Markdown..."
                 />
             </div>
 
-            {/* Tags */}
             <div className="space-y-4">
                 <label className="text-sm font-medium">Tags</label>
 
@@ -275,7 +255,6 @@ Write your content in Markdown..."
                 </div>
             </div>
 
-            {/* Published */}
             <label className="flex cursor-pointer items-center gap-2">
                 <input
                     type="checkbox"
@@ -286,7 +265,6 @@ Write your content in Markdown..."
                 <span className="text-sm">Published</span>
             </label>
 
-            {/* Actions */}
             <div className="flex items-center justify-between border-t border-dashed border-border pt-6">
                 <div>
                     {isEditing && (

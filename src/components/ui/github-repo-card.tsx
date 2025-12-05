@@ -60,7 +60,6 @@ export function GitHubRepoCard({ repo }: GitHubRepoCardProps) {
             rel="noopener noreferrer"
             className="group flex flex-col rounded-lg border border-border bg-card p-5 transition-all duration-200 hover:border-foreground/20 hover:shadow-sm"
         >
-            {/* Header */}
             <div className="mb-3 flex items-start justify-between gap-2">
                 <h3 className="font-medium text-foreground transition-colors group-hover:text-accent">
                     {repo.name}
@@ -68,12 +67,10 @@ export function GitHubRepoCard({ repo }: GitHubRepoCardProps) {
                 <ExternalLink className="h-4 w-4 flex-shrink-0 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100" />
             </div>
 
-            {/* Description */}
             <p className="mb-4 flex-1 text-sm leading-relaxed text-muted-foreground line-clamp-2">
                 {repo.description || 'No description'}
             </p>
 
-            {/* Topics */}
             {repo.topics.length > 0 && (
                 <div className="mb-4 flex flex-wrap gap-1.5">
                     {repo.topics.slice(0, 4).map((topic) => (
@@ -87,9 +84,7 @@ export function GitHubRepoCard({ repo }: GitHubRepoCardProps) {
                 </div>
             )}
 
-            {/* Footer */}
             <div className="flex items-center gap-4 text-xs text-muted-foreground">
-                {/* Language */}
                 {repo.language && (
                     <span className="flex items-center gap-1.5">
                         <span
@@ -100,7 +95,6 @@ export function GitHubRepoCard({ repo }: GitHubRepoCardProps) {
                     </span>
                 )}
 
-                {/* Stars */}
                 {repo.stargazers_count > 0 && (
                     <span className="flex items-center gap-1">
                         <Star className="h-3.5 w-3.5" />
@@ -108,7 +102,6 @@ export function GitHubRepoCard({ repo }: GitHubRepoCardProps) {
                     </span>
                 )}
 
-                {/* Forks */}
                 {repo.forks_count > 0 && (
                     <span className="flex items-center gap-1">
                         <GitFork className="h-3.5 w-3.5" />
@@ -116,7 +109,6 @@ export function GitHubRepoCard({ repo }: GitHubRepoCardProps) {
                     </span>
                 )}
 
-                {/* Updated */}
                 <span className="ml-auto">{formatDate(repo.updated_at)}</span>
             </div>
         </Link>

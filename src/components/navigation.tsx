@@ -1,12 +1,12 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { Container } from '@/components/ui/container'
 import { ThemeToggle } from '@/components/theme-toggle'
+import { Container } from '@/components/ui/container'
 import { cn } from '@/lib/utils'
 import { Menu, X } from 'lucide-react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { useEffect, useState } from 'react'
 
 const navLinks = [
     { href: '/projects', label: 'Projects' },
@@ -28,7 +28,6 @@ export function Navigation() {
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
 
-    // Close mobile menu on route change
     useEffect(() => {
         setIsMobileMenuOpen(false)
     }, [pathname])
@@ -44,7 +43,6 @@ export function Navigation() {
         >
             <Container>
                 <nav className="flex h-16 items-center justify-between">
-                    {/* Logo */}
                     <Link
                         href="/"
                         className="text-lg font-semibold tracking-tight transition-opacity hover:opacity-70"
@@ -52,7 +50,6 @@ export function Navigation() {
                         aymane.
                     </Link>
 
-                    {/* Desktop Navigation */}
                     <div className="hidden items-center gap-1 md:flex">
                         {navLinks.map((link) => {
                             const isActive =
@@ -79,7 +76,6 @@ export function Navigation() {
                         </div>
                     </div>
 
-                    {/* Mobile Menu Button */}
                     <div className="flex items-center gap-2 md:hidden">
                         <ThemeToggle />
                         <button
@@ -96,7 +92,6 @@ export function Navigation() {
                     </div>
                 </nav>
 
-                {/* Mobile Navigation */}
                 {isMobileMenuOpen && (
                     <div className="border-t border-border pb-4 md:hidden">
                         <div className="flex flex-col gap-1 pt-4">

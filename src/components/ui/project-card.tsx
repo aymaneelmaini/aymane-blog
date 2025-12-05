@@ -2,17 +2,7 @@ import { cn } from '@/lib/utils'
 import { ArrowUpRight, Github } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-
-interface ProjectCardProps {
-    title: string
-    description: string
-    slug: string
-    thumbnailUrl?: string | null
-    liveUrl?: string | null
-    githubUrl?: string | null
-    techStack: { name: string }[]
-    featured?: boolean
-}
+import { ProjectCardProps } from '@/types/project'
 
 export function ProjectCard({
     title,
@@ -32,7 +22,6 @@ export function ProjectCard({
                 featured && 'md:col-span-2'
             )}
         >
-            {/* Thumbnail */}
             <div className="relative aspect-video w-full overflow-hidden bg-muted">
                 {thumbnailUrl ? (
                     <Image
@@ -50,9 +39,7 @@ export function ProjectCard({
                 )}
             </div>
 
-            {/* Content */}
             <div className="flex flex-1 flex-col p-6">
-                {/* Title & Links */}
                 <div className="mb-3 flex items-start justify-between gap-4">
                     <h3 className="text-lg font-semibold tracking-tight">{title}</h3>
                     <div className="flex items-center gap-1">
@@ -81,12 +68,10 @@ export function ProjectCard({
                     </div>
                 </div>
 
-                {/* Description */}
                 <p className="mb-4 flex-1 text-sm leading-relaxed text-muted-foreground">
                     {description}
                 </p>
 
-                {/* Tech Stack */}
                 <div className="flex flex-wrap gap-2 border-t border-dashed border-border pt-4">
                     {techStack.map((tech) => (
                         <span

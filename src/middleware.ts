@@ -21,15 +21,12 @@ export async function middleware(request: NextRequest) {
     const isOnAdmin = pathname.startsWith('/admin')
     const isOnLogin = pathname === '/admin/login'
 
-    // Check if session is valid
     const isLoggedIn = sessionCookie ? await verifyToken(sessionCookie) : false
 
-    // Redirect to login if accessing admin without auth
     if (isOnAdmin && !isOnLogin && !isLoggedIn) {
         return NextResponse.redirect(new URL('/admin/login', request.url))
     }
 
-    // Redirect to admin if already logged in and on login page
     if (isOnLogin && isLoggedIn) {
         return NextResponse.redirect(new URL('/admin', request.url))
     }

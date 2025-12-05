@@ -1,16 +1,7 @@
 import { Calendar, Clock, ArrowUpRight } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
-
-interface BlogCardProps {
-    title: string
-    excerpt: string
-    slug: string
-    publishedAt: Date | null
-    readingTime: number
-    tags?: { name: string }[]
-    coverUrl?: string | null
-}
+import { BlogCardProps } from '@/types/blog'
 
 export function BlogCard({
     title,
@@ -34,7 +25,6 @@ export function BlogCard({
             href={`/blog/${slug}`}
             className="group flex flex-col overflow-hidden rounded-xl border border-border bg-card transition-all duration-300 hover:border-foreground/20 hover:shadow-sm"
         >
-            {/* Cover Image */}
             {coverUrl && (
                 <div className="relative aspect-[2/1] w-full overflow-hidden bg-muted">
                     <Image
@@ -47,9 +37,7 @@ export function BlogCard({
                 </div>
             )}
 
-            {/* Content */}
             <div className="flex flex-1 flex-col p-5">
-                {/* Tags */}
                 {tags.length > 0 && (
                     <div className="mb-3 flex flex-wrap gap-2">
                         {tags.slice(0, 3).map((tag) => (
@@ -63,17 +51,14 @@ export function BlogCard({
                     </div>
                 )}
 
-                {/* Title */}
                 <h3 className="mb-2 text-lg font-semibold leading-snug transition-colors group-hover:text-accent">
                     {title}
                 </h3>
 
-                {/* Excerpt */}
                 <p className="mb-4 flex-1 text-sm leading-relaxed text-muted-foreground line-clamp-2">
                     {excerpt}
                 </p>
 
-                {/* Meta */}
                 <div className="flex items-center justify-between text-xs text-muted-foreground">
                     <div className="flex items-center gap-3">
                         <span className="flex items-center gap-1">

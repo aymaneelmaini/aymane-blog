@@ -4,12 +4,7 @@ import { useState, useRef } from 'react'
 import { Button } from '@/components/ui/button'
 import { Upload, X, Image as ImageIcon, Loader2, Link as LinkIcon } from 'lucide-react'
 import Image from 'next/image'
-
-interface ImageUploadProps {
-    value: string
-    onChange: (url: string) => void
-    placeholder?: string
-}
+import { ImageUploadProps } from '@/types/image'
 
 export function ImageUpload({ value, onChange, placeholder = 'Upload an image' }: ImageUploadProps) {
     const [loading, setLoading] = useState(false)
@@ -125,7 +120,6 @@ export function ImageUpload({ value, onChange, placeholder = 'Upload an image' }
         }
     }
 
-    // If we have a value, show preview
     if (value) {
         return (
             <div className="space-y-3">
@@ -154,10 +148,8 @@ export function ImageUpload({ value, onChange, placeholder = 'Upload an image' }
         )
     }
 
-    // No value - show upload area
     return (
         <div className="space-y-3">
-            {/* Upload Area */}
             <div
                 onDragEnter={handleDrag}
                 onDragLeave={handleDrag}
@@ -196,7 +188,6 @@ export function ImageUpload({ value, onChange, placeholder = 'Upload an image' }
                 )}
             </div>
 
-            {/* Hidden Input */}
             <input
                 ref={inputRef}
                 type="file"
@@ -205,12 +196,10 @@ export function ImageUpload({ value, onChange, placeholder = 'Upload an image' }
                 className="hidden"
             />
 
-            {/* Error */}
             {error && (
                 <p className="text-sm text-red-500">{error}</p>
             )}
 
-            {/* URL Input Toggle */}
             {!showUrlInput ? (
                 <button
                     type="button"

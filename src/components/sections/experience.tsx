@@ -63,13 +63,11 @@ export async function ExperienceSection() {
                 />
 
                 <div className="relative">
-                    {/* Timeline line */}
                     <div className="absolute left-0 top-0 hidden h-full w-px border-l border-dashed border-border sm:left-[7px] sm:block" />
 
                     <div className="space-y-8">
                         {displayExperiences.map((exp) => (
                             <div key={exp.id} className="relative pl-0 sm:pl-12">
-                                {/* Timeline dot */}
                                 <div className="absolute left-0 top-6 hidden h-4 w-4 items-center justify-center sm:flex">
                                     <div
                                         className={`h-3 w-3 rounded-full border-2 ${exp.current
@@ -80,7 +78,6 @@ export async function ExperienceSection() {
                                 </div>
 
                                 <div className="rounded-xl border border-border bg-card p-6 transition-colors hover:border-foreground/20">
-                                    {/* Header */}
                                     <div className="mb-4 flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
                                         <div>
                                             <h3 className="text-lg font-semibold">{exp.role}</h3>
@@ -99,7 +96,6 @@ export async function ExperienceSection() {
                                         </div>
                                     </div>
 
-                                    {/* Description */}
                                     {exp.description && (
                                         <p className="text-sm leading-relaxed text-muted-foreground">
                                             {exp.description}

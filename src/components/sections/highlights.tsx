@@ -63,11 +63,9 @@ const whatIDo = [
 export function HighlightsSection() {
     return (
         <section className="relative overflow-hidden bg-foreground py-24 text-background dark:bg-muted/30 dark:text-foreground sm:py-32">
-            {/* Subtle gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/10 dark:to-black/20" />
 
             <Container className="relative">
-                {/* Quick Stats */}
                 <div className="mb-24">
                     <h2 className="mb-12 flex items-center justify-center gap-3 text-2xl font-bold sm:text-3xl">
                         <span>🎯</span>
@@ -92,7 +90,6 @@ export function HighlightsSection() {
                     </div>
                 </div>
 
-                {/* What I Do */}
                 <div>
                     <div className="mb-12 text-center">
                         <h2 className="mb-4 flex items-center justify-center gap-3 text-2xl font-bold sm:text-3xl">

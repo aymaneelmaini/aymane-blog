@@ -5,23 +5,7 @@ import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { ImageUpload } from '@/components/ui/image-upload'
 import { Loader2, Trash2 } from 'lucide-react'
-
-interface ProjectFormProps {
-    project?: {
-        id: string
-        title: string
-        slug: string
-        description: string
-        thumbnailUrl: string | null
-        liveUrl: string | null
-        githubUrl: string | null
-        featured: boolean
-        published: boolean
-        order: number
-        techStack: { tech: { id: string; name: string } }[]
-    }
-    allTechs: { id: string; name: string }[]
-}
+import { ProjectFormProps } from '@/types/forms'
 
 export function ProjectForm({ project, allTechs }: ProjectFormProps) {
     const router = useRouter()
@@ -149,7 +133,6 @@ export function ProjectForm({ project, allTechs }: ProjectFormProps) {
                 </div>
             )}
 
-            {/* Title & Slug */}
             <div className="grid gap-6 sm:grid-cols-2">
                 <div className="space-y-2">
                     <label htmlFor="title" className="text-sm font-medium">
@@ -182,7 +165,6 @@ export function ProjectForm({ project, allTechs }: ProjectFormProps) {
                 </div>
             </div>
 
-            {/* Description */}
             <div className="space-y-2">
                 <label htmlFor="description" className="text-sm font-medium">
                     Description <span className="text-red-500">*</span>
@@ -197,7 +179,6 @@ export function ProjectForm({ project, allTechs }: ProjectFormProps) {
                 />
             </div>
 
-            {/* Thumbnail Upload */}
             <div className="space-y-2">
                 <label className="text-sm font-medium">Project Thumbnail</label>
                 <ImageUpload
@@ -207,7 +188,6 @@ export function ProjectForm({ project, allTechs }: ProjectFormProps) {
                 />
             </div>
 
-            {/* URLs */}
             <div className="grid gap-6 sm:grid-cols-2">
                 <div className="space-y-2">
                     <label htmlFor="liveUrl" className="text-sm font-medium">
@@ -238,7 +218,6 @@ export function ProjectForm({ project, allTechs }: ProjectFormProps) {
                 </div>
             </div>
 
-            {/* Tech Stack */}
             <div className="space-y-4">
                 <label className="text-sm font-medium">Tech Stack</label>
 
@@ -273,7 +252,6 @@ export function ProjectForm({ project, allTechs }: ProjectFormProps) {
                 </div>
             </div>
 
-            {/* Options */}
             <div className="flex flex-wrap gap-6">
                 <label className="flex cursor-pointer items-center gap-2">
                     <input
@@ -309,7 +287,6 @@ export function ProjectForm({ project, allTechs }: ProjectFormProps) {
                 </div>
             </div>
 
-            {/* Actions */}
             <div className="flex items-center justify-between border-t border-dashed border-border pt-6">
                 <div>
                     {isEditing && (
