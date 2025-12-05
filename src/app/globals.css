@@ -24,6 +24,18 @@
   --card-foreground: #ededed;
 }
 
+.gruvbox {
+  --background: #1d2021;
+  --foreground: #ebdbb2;
+  --muted: #282828;
+  --muted-foreground: #a89984;
+  --border: #3c3836;
+  --accent: #d79921;
+  --accent-foreground: #1d2021;
+  --card: #282828;
+  --card-foreground: #ebdbb2;
+}
+
 * {
   border-color: var(--border);
 }
