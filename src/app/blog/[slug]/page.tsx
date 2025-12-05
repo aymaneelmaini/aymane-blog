@@ -7,18 +7,21 @@ import { db } from '@/lib/db'
 import { ArrowLeft, Calendar, Clock } from 'lucide-react'
 import { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import { notFound } from 'next/navigation'
 
 interface PageProps {
     params: Promise<{ slug: string }>
 }
 
+// Demo posts for development
 const demoPosts: Record<string, {
     id: string
     title: string
     slug: string
     excerpt: string
     content: string
+    coverUrl: string | null
     publishedAt: Date
     readingTime: number
     tags: { id: string; name: string; slug: string }[]
@@ -28,6 +31,7 @@ const demoPosts: Record<string, {
         title: 'Building Scalable Microservices with Spring Boot',
         slug: 'scalable-microservices-spring-boot',
         excerpt: 'Learn how to design and implement microservices that can handle millions of transactions.',
+        coverUrl: null,
         content: `# Building Scalable Microservices with Spring Boot
 
 Building microservices that can handle millions of transactions requires careful planning and the right architectural decisions. In this post, I'll share what I've learned building payment processing systems at ProgressSoft.
@@ -88,6 +92,7 @@ Feel free to reach out if you have questions!`,
         title: 'Payment Processing: Lessons from the Trenches',
         slug: 'payment-processing-lessons',
         excerpt: 'Insights from building payment systems that handle SWIFT integrations and Visa transactions at scale.',
+        coverUrl: null,
         content: `# Payment Processing: Lessons from the Trenches
 
 Working with financial systems has taught me valuable lessons about building reliable software.
@@ -138,6 +143,7 @@ Building payment systems requires attention to detail and a deep understanding o
         title: 'From Legacy to Modern: Refactoring Strategies',
         slug: 'legacy-refactoring-strategies',
         excerpt: 'Practical approaches to refactoring legacy codebases while maintaining backward compatibility.',
+        coverUrl: null,
         content: `# From Legacy to Modern: Refactoring Strategies
 
 Refactoring legacy code is one of the most challenging tasks in software engineering.
@@ -247,6 +253,22 @@ export default async function BlogPostPage({ params }: PageProps) {
         <>
             <Navigation />
             <main className="min-h-screen pt-24">
+                {/* Cover Image - Full Width */}
+                {post.coverUrl && (
+                    <div className="relative mx-auto mb-12 h-64 max-w-5xl overflow-hidden rounded-xl sm:h-80 md:h-96 lg:h-[28rem]">
+                        <Image
+                            src={post.coverUrl}
+                            alt={post.title}
+                            fill
+                            className="object-cover"
+                            priority
+                            unoptimized
+                        />
+                        {/* Gradient Overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+                    </div>
+                )}
+
                 <Container>
                     <article className="mx-auto max-w-3xl pb-24">
                         {/* Back Button */}

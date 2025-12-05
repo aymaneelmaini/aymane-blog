@@ -1,8 +1,15 @@
 import { NextResponse } from 'next/server'
 import { verifySession } from '@/lib/auth'
-import { writeFile, mkdir } from 'fs/promises'
-import { existsSync } from 'fs'
-import path from 'path'
+import { v2 as cloudinary } from 'cloudinary'
+
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+})
+
+export const runtime = 'nodejs'
+export const maxDuration = 60 // Allow up to 60 seconds
 
 export async function POST(request: Request) {
     const session = await verifySession()
@@ -36,28 +43,33 @@ export async function POST(request: Request) {
             )
         }
 
-        // Create uploads directory if it doesn't exist
-        const uploadsDir = path.join(process.cwd(), 'public', 'uploads')
-        if (!existsSync(uploadsDir)) {
-            await mkdir(uploadsDir, { recursive: true })
-        }
-
-        // Generate unique filename
-        const timestamp = Date.now()
-        const randomString = Math.random().toString(36).substring(2, 8)
-        const extension = file.name.split('.').pop()
-        const filename = `${timestamp}-${randomString}.${extension}`
-
-        // Write file
+        // Convert file to buffer
         const bytes = await file.arrayBuffer()
         const buffer = Buffer.from(bytes)
-        const filepath = path.join(uploadsDir, filename)
-        await writeFile(filepath, buffer)
 
-        // Return the public URL
-        const url = `/uploads/${filename}`
+        // Upload to Cloudinary using promise wrapper
+        const result = await new Promise<{ secure_url: string }>((resolve, reject) => {
+            cloudinary.uploader
+                .upload_stream(
+                    {
+                        folder: 'portfolio',
+                        resource_type: 'image',
+                        timeout: 60000, // 60 second timeout
+                    },
+                    (error, result) => {
+                        if (error) {
+                            reject(error)
+                        } else if (result) {
+                            resolve(result)
+                        } else {
+                            reject(new Error('No result from Cloudinary'))
+                        }
+                    }
+                )
+                .end(buffer)
+        })
 
-        return NextResponse.json({ url }, { status: 201 })
+        return NextResponse.json({ url: result.secure_url }, { status: 201 })
     } catch (error) {
         console.error('Upload error:', error)
         return NextResponse.json({ error: 'Failed to upload file' }, { status: 500 })

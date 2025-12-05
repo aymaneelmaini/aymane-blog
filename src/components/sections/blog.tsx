@@ -12,9 +12,7 @@ async function getPosts() {
         take: 3,
         include: {
             tags: {
-                include: {
-                    tag: true,
-                },
+                include: { tag: true },
             },
         },
     })
@@ -37,10 +35,11 @@ export async function BlogSection() {
                     title: 'Building Scalable Microservices with Spring Boot',
                     slug: 'scalable-microservices-spring-boot',
                     excerpt:
-                        'Learn how to design and implement microservices that can handle millions of transactions using Spring Boot and Domain-Driven Design.',
+                        'Learn how to design and implement microservices that can handle millions of transactions.',
                     publishedAt: new Date('2025-01-15'),
                     readingTime: 8,
-                    tags: [{ name: 'Java' }, { name: 'Spring Boot' }, { name: 'DDD' }],
+                    coverUrl: null,
+                    tags: [{ name: 'Java' }, { name: 'Spring Boot' }],
                 },
                 {
                     id: '2',
@@ -50,6 +49,7 @@ export async function BlogSection() {
                         'Insights from building payment systems that handle SWIFT integrations and Visa transactions at scale.',
                     publishedAt: new Date('2025-01-10'),
                     readingTime: 6,
+                    coverUrl: null,
                     tags: [{ name: 'Fintech' }, { name: 'Backend' }],
                 },
                 {
@@ -60,6 +60,7 @@ export async function BlogSection() {
                         'Practical approaches to refactoring legacy codebases while maintaining backward compatibility.',
                     publishedAt: new Date('2025-01-05'),
                     readingTime: 10,
+                    coverUrl: null,
                     tags: [{ name: 'Refactoring' }, { name: 'Best Practices' }],
                 },
             ]
@@ -70,7 +71,7 @@ export async function BlogSection() {
                 <div className="flex items-end justify-between gap-4">
                     <SectionHeader
                         title="Blog"
-                        description="Thoughts on software engineering, backend development, and lessons learned."
+                        description="Thoughts on software development, architecture, and lessons learned."
                     />
                     <Button variant="ghost" asChild className="hidden sm:inline-flex">
                         <Link href="/blog">View all posts</Link>
@@ -82,11 +83,12 @@ export async function BlogSection() {
                         <BlogCard
                             key={post.id}
                             title={post.title}
-                            slug={post.slug}
                             excerpt={post.excerpt}
+                            slug={post.slug}
                             publishedAt={post.publishedAt}
                             readingTime={post.readingTime}
                             tags={post.tags}
+                            coverUrl={post.coverUrl}
                         />
                     ))}
                 </div>
