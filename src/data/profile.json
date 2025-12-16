@@ -1,0 +1,16 @@
+{
+  "profile": {
+    "name": "Aymane El Maini",
+    "title": "Software Engineer",
+    "bio": "Software engineer passionate about building scalable payment systems and enterprise applications. Experienced with Spring Boot, microservices architecture, and Domain-Driven Design. Currently working at ProgressSoft on payment processing systems. Diving deep into low-level programming and systems engineering.",
+    "email": "elmainiaymane03@gmail.com",
+    "location": "Morocco",
+    "avatarUrl": null,
+    "resumeUrl": null,
+    "socialLinks": {
+      "github": "https://github.com/yourusername",
+      "linkedin": "https://linkedin.com/in/yourusername",
+      "email": "elmainiaymane03@gmail.com"
+    }
+  }
+}

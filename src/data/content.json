@@ -1,0 +1,89 @@
+{
+  "site": {
+    "name": "Aymane El Maini",
+    "title": "Software Engineer",
+    "url": "https://aymaneelmaini.com",
+    "description": "Software Engineer building scalable backend systems for financial services"
+  },
+  "hero": {
+    "badge": "Available for opportunities",
+    "greeting": "Hi, I'm Aymane",
+    "headline": "Currently a Software Engineer at ProgressSoft, where I build e-banking systems.",
+    "description": "At ProgressSoft, I specialize in Java & Kotlin. But I'm passionate about low-level and systems programming—that's what I'm focusing on and learning right now.",
+    "cta": {
+      "primary": {
+        "text": "View Projects",
+        "href": "/projects"
+      },
+      "secondary": {
+        "text": "Read Blog",
+        "href": "/blog"
+      }
+    },
+    "scrollText": "Scroll"
+  },
+  "sections": {
+    "projects": {
+      "title": "Projects",
+      "description": "Personal projects I've built to learn and experiment with new ideas"
+    },
+    "blog": {
+      "title": "Blog",
+      "description": "Thoughts on software development, architecture, and lessons learned.",
+      "viewAllText": "View all posts"
+    },
+    "experience": {
+      "title": "Experience",
+      "description": "My professional journey in software engineering."
+    },
+    "skills": {
+      "title": "Skills",
+      "description": "Technologies and tools I work with daily."
+    },
+    "contact": {
+      "title": "Let's work together",
+      "description": "I'm always open to discussing new opportunities, interesting projects, or just having a chat about software engineering.",
+      "location": "Marrakesh, Morocco",
+      "ctaText": "Get in touch"
+    }
+  },
+  "pages": {
+    "blog": {
+      "title": "Blog",
+      "description": "Thoughts on software development, architecture, and lessons learned from building payment systems and enterprise applications.",
+      "emptyState": "No posts published yet.",
+      "metadata": {
+        "title": "Blog | Aymane El Maini",
+        "description": "Thoughts on software development, architecture, and lessons learned."
+      }
+    },
+    "projects": {
+      "title": "Projects",
+      "description": "Personal projects I've built to explore new technologies and ideas",
+      "featuredTitle": "Featured Projects",
+      "openSourceTitle": "Open Source & GitHub",
+      "viewAllGithub": "View all on GitHub →",
+      "emptyState": "No projects to show yet.",
+      "metadata": {
+        "title": "Projects | Aymane El Maini",
+        "description": "A collection of projects I've built, from payment systems to full-stack applications."
+      }
+    },
+    "blogPost": {
+      "backButton": "Back to Blog",
+      "readingTime": "min read",
+      "thanksMessage": "Thanks for reading! Feel free to <link>reach out</link> if you have any questions.",
+      "notFound": "Post Not Found"
+    }
+  },
+  "navigation": {
+    "home": "Home",
+    "projects": "Projects",
+    "blog": "Blog",
+    "contact": "Contact"
+  },
+  "footer": {
+    "copyright": "© 2025 Aymane El Maini. All rights reserved.",
+    "builtWith": "Built with Next.js & Tailwind CSS"
+  }
+}

@@ -2,29 +2,20 @@ import { Container } from '@/components/ui/container'
 import { SectionHeader } from '@/components/ui/section-header'
 import { BlogCard } from '@/components/ui/blog-card'
 import { Button } from '@/components/ui/button'
-import { db } from '@/lib/db'
+import { getAllPosts } from '@/lib/blog'
+import content from '@/data/content.json'
 import Link from 'next/link'
 
-async function getPosts() {
-    const posts = await db.post.findMany({
-        where: { published: true },
-        orderBy: { publishedAt: 'desc' },
-        take: 3,
-        include: {
-            tags: {
-                include: { tag: true },
-            },
-        },
-    })
-
-    return posts.map((post) => ({
+function getPosts() {
+    const allPosts = getAllPosts()
+    return allPosts.slice(0, 3).map((post) => ({
         ...post,
-        tags: post.tags.map((pt) => ({ name: pt.tag.name })),
+        tags: post.tags.map((tag) => ({ name: tag })),
     }))
 }
 
-export async function BlogSection() {
-    const posts = await getPosts()
+export function BlogSection() {
+    const posts = getPosts()
 
     if (posts.length === 0) {
         return null
@@ -35,18 +26,18 @@ export async function BlogSection() {
             <Container>
                 <div className="flex items-end justify-between gap-4">
                     <SectionHeader
-                        title="Blog"
-                        description="Thoughts on software development, architecture, and lessons learned."
+                        title={content.sections.blog.title}
+                        description={content.sections.blog.description}
                     />
                     <Button variant="ghost" asChild className="hidden sm:inline-flex">
-                        <Link href="/blog">View all posts</Link>
+                        <Link href="/blog">{content.sections.blog.viewAllText}</Link>
                     </Button>
                 </div>
 
                 <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                     {posts.map((post) => (
                         <BlogCard
-                            key={post.id}
+                            key={post.slug}
                             title={post.title}
                             excerpt={post.excerpt}
                             slug={post.slug}
@@ -60,7 +51,7 @@ export async function BlogSection() {
 
                 <div className="mt-8 text-center sm:hidden">
                     <Button variant="secondary" asChild>
-                        <Link href="/blog">View all posts</Link>
+                        <Link href="/blog">{content.sections.blog.viewAllText}</Link>
                     </Button>
                 </div>
             </Container>

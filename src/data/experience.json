@@ -1,0 +1,34 @@
+{
+  "experiences": [
+    {
+      "id": "1",
+      "company": "ProgressSoft Corporation | Jordan",
+      "role": "Associate Software Engineer",
+      "description": "Contributing to PayHub, a leading enterprise payment hub in the MENA region. I develop and maintain global payment processing systems, working on integrations with SWIFT, Visa, MoneyGram, and other payment networks. Using Java/Kotlin with Spring ecosystem, Domain-Driven Design, and Microservices architecture.",
+      "logoUrl": "/images/experiences/progressoft.avif",
+      "startDate": "2024-11",
+      "endDate": null,
+      "current": true
+    },
+    {
+      "id": "2",
+      "company": "Foodeals | Morocco, Fez",
+      "role": "Backend Developer",
+      "description": "Contributed to 3 solutions (Foodeals DLC, Foodeals Market, Foodeals Donation) and an external e-learning platform for a private school. Using Spring Boot for backend and Angular for frontend.",
+      "logoUrl": "/images/experiences/foodeals.png",
+      "startDate": "2024-05",
+      "endDate": "2024-08",
+      "current": false
+    },
+    {
+      "id": "3",
+      "company": "ICF Communication | Morocco, Marrakesh",
+      "role": "Frontend Developer",
+      "description": "Built multiple responsive web applications using HTML5, JavaScript, CSS3, and Tailwind. Integrated backend APIs using vanilla JavaScript.",
+      "logoUrl": "/images/experiences/icf.png",
+      "startDate": "2023-04",
+      "endDate": "2024-07",
+      "current": false
+    }
+  ]
+}

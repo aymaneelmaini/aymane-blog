@@ -1,0 +1,98 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "Klox",
+      "slug": "klox",
+      "description": "A tree-walk interpreter built with Kotlin, following Crafting Interpreters as a guide",
+      "longDescription": "In this project, I implemented a tree-walk interpreter with all its building blocks, from scanning tokens to generating an AST and executing it at runtime. The language features OOP, functions, closures, and of course variables, arithmetic expressions, and control flows.",
+      "thumbnailUrl": null,
+      "tags": ["Kotlin", "Recursive Descent parsing algorithm"],
+      "fullTags": [
+        "kotlin",
+        "interpreters",
+        "language-implementation",
+        "compilers",
+        "low-level",
+        "programming-languages"
+      ],
+      "liveUrl": null,
+      "githubUrl": "https://github.com/AymaneTech/klox",
+      "featured": false,
+      "published": true,
+      "status": "ready"
+    },
+    {
+      "id": 2,
+      "title": "Clox",
+      "slug": "clox",
+      "description": "A bytecode compiler and virtual machine written in C",
+      "longDescription": "In this project, I implemented a compiler that scans tokens and generates bytecode instructions, which the VM then executes. Compared to Klox, this language features garbage collection, a stack-based VM, and heap allocation. It's well-tested using Criterion for C.",
+      "thumbnailUrl": null,
+      "tags": ["C", "memory-management", "Pratt parsing algorithm"],
+      "fullTags": [
+        "kotlin",
+        "interpreters",
+        "language-implementation",
+        "compilers",
+        "low-level",
+        "programming-languages"
+      ],
+      "liveUrl": null,
+      "githubUrl": "https://github.com/AymaneTech/klox",
+      "featured": false,
+      "published": true,
+      "status": "ready"
+    },
+    {
+      "id": 3,
+      "title": "Linkupp",
+      "slug": "linkupp",
+      "description": "Friend matching mobile app (Tinder-like, but for making friends)",
+      "longDescription": "In this project, I customized my own Kotlin stack. I used Spring Boot with Exposed ORM instead of JPA for better performance and native Kotlin support. Kotest as the main testing library instead of JUnit, because of its beautiful DSL and Kotlin-first design. Applied DDD with functional core, imperative shell, a domain layer composed of immutable types and pure functions. React Native for the mobile app.",
+      "thumbnailUrl": null,
+      "tags": [
+        "Kotlin",
+        "Spring Boot",
+        "Exposed ORM",
+        "Liquibase",
+        "Kotest",
+        "FP",
+        "DDD",
+        "React Native",
+        "TypeScript"
+      ],
+      "fullTags": [
+        "Kotlin",
+        "Spring Boot",
+        "Exposed ORM",
+        "Liquibase",
+        "Kotest",
+        "FP",
+        "DDD",
+        "React Native",
+        "TypeScript"
+      ],
+      "liveUrl": null,
+      "githubUrl": "https://github.com/AymaneTech/linkupp",
+      "featured": false,
+      "published": true,
+      "status": "ready"
+    },
+    {
+      "id": 3,
+      "title": "CS. Cleanup Services",
+      "slug": "cs-cleanupservices",
+      "description": "Cleanup services website for a client in Germany",
+      "longDescription": "Built with Next.js to showcase CS Cleanup Services, a cleaning company based in Germany.",
+      "thumbnailUrl": null,
+      "tags": ["Next.js", "resend", "tailwind"],
+      "fullTags": ["Next.js", "resend", "tailwind"],
+      "liveUrl": "https://cs-cleanupservice.de/",
+      "githubUrl": null,
+      "featured": false,
+      "published": true,
+      "status": "ready"
+    }
+  ]
+}

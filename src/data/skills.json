@@ -1,0 +1,51 @@
+{
+  "skillCategories": [
+    {
+      "category": "Languages",
+      "skills": [
+        { "name": "C/C++", "iconUrl": null },
+        { "name": "Kotlin", "iconUrl": null },
+        { "name": "Java", "iconUrl": null },
+        { "name": "GO", "iconUrl": null },
+        { "name": "TypeScript", "iconUrl": null },
+        { "name": "JavaScript", "iconUrl": null },
+        { "name": "PHP", "iconUrl": null }
+      ]
+    },
+    {
+      "category": "Frameworks & Libraries",
+      "skills": [
+        { "name": "Spring Boot", "iconUrl": null },
+        { "name": "Laravel", "iconUrl": null },
+        { "name": "Angular", "iconUrl": null },
+        { "name": "Next.js", "iconUrl": null },
+        { "name": "React", "iconUrl": null }
+      ]
+    },
+    {
+      "category": "Databases",
+      "skills": [
+        { "name": "One day My own", "iconUrl": null },
+        { "name": "Oracle", "iconUrl": null },
+        { "name": "MSSQL", "iconUrl": null },
+        { "name": "Postgresql", "iconUrl": null },
+        { "name": "MySql", "iconUrl": null },
+        { "name": "MongoDB", "iconUrl": null },
+        { "name": "Redis", "iconUrl": null },
+        { "name": "Oracle AQ", "iconUrl": null }
+      ]
+    },
+    {
+      "category": "DevOps & Tools",
+      "skills": [
+        { "name": "Linux", "iconUrl": null },
+        { "name": "Docker", "iconUrl": null },
+        { "name": "Kubernetes", "iconUrl": null },
+        { "name": "Git", "iconUrl": null },
+        { "name": "CI/CD", "iconUrl": null },
+        { "name": "GCP", "iconUrl": null },
+        { "name": "AWS", "iconUrl": null }
+      ]
+    }
+  ]
+}

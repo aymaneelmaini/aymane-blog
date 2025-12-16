@@ -3,8 +3,11 @@ import { Button } from "@/components/ui/button";
 import { Github, Icon, Linkedin, Mail, MapPin } from "lucide-react";
 import Link from "next/link";
 import { socialMediaLinks } from "@/constants/links";
+import content from "@/data/content.json";
 
 export function ContactSection() {
+  const { contact } = content.sections;
+
   return (
     <section
       id="contact"
@@ -13,23 +16,22 @@ export function ContactSection() {
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            Let&apos;s work together
+            {contact.title}
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            I&apos;m always open to discussing new opportunities, interesting
-            projects, or just having a chat about software engineering.
+            {contact.description}
           </p>
 
           <div className="mt-6 flex items-center justify-center gap-2 text-muted-foreground">
             <MapPin className="h-4 w-4" />
-            <span>Marrakesh, Morocco</span>
+            <span>{contact.location}</span>
           </div>
 
           <div className="mt-8">
             <Button size="lg" asChild>
               <Link href={socialMediaLinks.mail.link}>
                 <Mail className="mr-2 h-4 w-4" />
-                Get in touch
+                {contact.ctaText}
               </Link>
             </Button>
           </div>

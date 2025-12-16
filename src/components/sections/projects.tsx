@@ -1,30 +1,26 @@
 import { Container } from '@/components/ui/container'
 import { SectionHeader } from '@/components/ui/section-header'
 import { ProjectCard } from '@/components/ui/project-card'
-import { db } from '@/lib/db'
+import projectsData from '@/data/projects.json'
+import content from '@/data/content.json'
 
-async function getProjects() {
-    const projects = await db.project.findMany({
-        where: { published: true },
-        orderBy: [{ featured: 'desc' }, { order: 'asc' }],
-        take: 4,
-        include: {
-            techStack: {
-                include: {
-                    tech: true,
-                },
-            },
-        },
-    })
+function getProjects() {
+    const projects = projectsData.projects
+        .filter((p) => p.published)
+        .sort((a, b) => {
+            if (a.featured !== b.featured) return b.featured ? 1 : -1
+            return a.id - b.id
+        })
+        .slice(0, 4)
 
     return projects.map((project) => ({
         ...project,
-        techStack: project.techStack.map((pt) => ({ name: pt.tech.name })),
+        techStack: project.tags.map((tag) => ({ name: tag })),
     }))
 }
 
-export async function ProjectsSection() {
-    const projects = await getProjects()
+export function ProjectsSection() {
+    const projects = getProjects()
 
     if (projects.length === 0) {
         return null
@@ -34,8 +30,8 @@ export async function ProjectsSection() {
         <section id="projects" className="py-24 sm:py-32">
             <Container>
                 <SectionHeader
-                    title="Projects"
-                    description="A selection of projects I've worked on, from payment systems to full-stack applications."
+                    title={content.sections.projects.title}
+                    description={content.sections.projects.description}
                 />
 
                 <div className="grid gap-6 sm:grid-cols-2">

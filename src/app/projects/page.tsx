@@ -3,47 +3,31 @@ import { Navigation } from '@/components/navigation'
 import { Footer } from '@/components/footer'
 import { ProjectCard } from '@/components/ui/project-card'
 import { GitHubRepoCard } from '@/components/ui/github-repo-card'
-import { db } from '@/lib/db'
+import projectsData from '@/data/projects.json'
+import content from '@/data/content.json'
 import { Metadata } from 'next'
 import { GITHUB_REPOSITORY_URL } from '@/constants/links'
+import { GitHubRepo } from '@/types/project'
 
 export const metadata: Metadata = {
-    title: 'Projects | Aymane El Maini',
-    description: 'A collection of projects I\'ve built, from payment systems to full-stack applications.',
+    title: content.pages.projects.metadata.title,
+    description: content.pages.projects.metadata.description,
 }
 
 export const revalidate = 3600
 
-async function getProjects() {
-    const projects = await db.project.findMany({
-        where: { published: true },
-        orderBy: [{ featured: 'desc' }, { order: 'asc' }],
-        include: {
-            techStack: {
-                include: { tech: true },
-            },
-        },
-    })
+function getProjects() {
+    const projects = projectsData.projects
+        .filter((p) => p.published)
+        .sort((a, b) => {
+            if (a.featured !== b.featured) return b.featured ? 1 : -1
+            return a.id - b.id
+        })
 
     return projects.map((project) => ({
         ...project,
-        techStack: project.techStack.map((pt) => ({ name: pt.tech.name })),
+        techStack: project.tags.map((tag) => ({ name: tag })),
     }))
-}
-
-interface GitHubRepo {
-    id: number
-    name: string
-    description: string | null
-    html_url: string
-    homepage: string | null
-    stargazers_count: number
-    forks_count: number
-    language: string | null
-    topics: string[]
-    fork: boolean
-    archived: boolean
-    updated_at: string
 }
 
 async function getGitHubRepos(): Promise<GitHubRepo[]> {
@@ -54,7 +38,7 @@ async function getGitHubRepos(): Promise<GitHubRepo[]> {
                 headers: {
                     Accept: 'application/vnd.github.v3+json',
                 },
-                next: { revalidate: 3600 }, 
+                next: { revalidate: 3600 },
             }
         )
 
@@ -74,10 +58,8 @@ async function getGitHubRepos(): Promise<GitHubRepo[]> {
 }
 
 export default async function ProjectsPage() {
-    const [projects, githubRepos] = await Promise.all([
-        getProjects(),
-        getGitHubRepos(),
-    ])
+    const projects = getProjects()
+    const githubRepos = await getGitHubRepos()
 
     return (
         <>
@@ -85,24 +67,24 @@ export default async function ProjectsPage() {
             <main className="min-h-screen pt-24">
                 <Container>
                     <div className="mb-16 max-w-2xl">
-                        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">Projects</h1>
+                        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">{content.pages.projects.title}</h1>
                         <p className="mt-4 text-lg text-muted-foreground">
-                            A collection of projects I've built, from payment processing systems
-                            to full-stack applications. Some are from work, others are personal experiments.
+                            {content.pages.projects.description}
                         </p>
                     </div>
 
                     {projects.length > 0 && (
                         <section className="mb-24">
                             <h2 className="mb-8 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
-                                Featured Projects
+                                {content.pages.projects.featuredTitle}
                             </h2>
-                            <div className="grid gap-6 sm:grid-cols-2">
+                            <div className="space-y-6">
                                 {projects.map((project) => (
                                     <ProjectCard
                                         key={project.id}
                                         title={project.title}
                                         description={project.description}
+                                        longDescription={project.longDescription}
                                         slug={project.slug}
                                         thumbnailUrl={project.thumbnailUrl}
                                         liveUrl={project.liveUrl}
@@ -119,14 +101,14 @@ export default async function ProjectsPage() {
                         <section className="border-t border-dashed border-border pb-24 pt-16">
                             <div className="mb-8 flex items-center justify-between">
                                 <h2 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
-                                    Open Source & GitHub
+                                    {content.pages.projects.openSourceTitle}
                                 </h2>
 
                                 <a href="https://github.com/AymaneTech"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="text-sm text-muted-foreground transition-colors hover:text-foreground">
-                                    View all on GitHub →
+                                    {content.pages.projects.viewAllGithub}
                                 </a>
                             </div>
                             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -139,7 +121,7 @@ export default async function ProjectsPage() {
 
                     {projects.length === 0 && githubRepos.length === 0 && (
                         <div className="py-24 text-center">
-                            <p className="text-muted-foreground">No projects to show yet.</p>
+                            <p className="text-muted-foreground">{content.pages.projects.emptyState}</p>
                         </div>
                     )}
                 </Container>

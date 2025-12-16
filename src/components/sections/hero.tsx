@@ -3,8 +3,11 @@ import { Button } from '@/components/ui/button'
 import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react'
 import Link from 'next/link'
 import { socialMediaLinks } from '@/constants/links'
+import content from '@/data/content.json'
 
 export function HeroSection() {
+    const { hero } = content
+
     return (
         <section className="relative flex min-h-screen items-center pt-16">
             <Container>
@@ -15,34 +18,30 @@ export function HeroSection() {
                             <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
                         </span>
                         <span className="text-sm text-muted-foreground">
-                            Available for opportunities
+                            {hero.badge}
                         </span>
                     </div>
 
                     <div className="max-w-3xl space-y-4">
                         <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-                            Hi, I&apos;m Aymane
+                            {hero.greeting}
                             <span className="text-muted-foreground">.</span>
                         </h1>
                         <p className="text-xl text-muted-foreground sm:text-2xl md:text-3xl">
-                            Software Engineer building{' '}
-                            <span className="text-foreground">scalable backend systems</span>{' '}
-                            for financial services.
+                          {hero.headline}
                         </p>
                     </div>
 
                     <p className="max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-                        Associate Software Engineer at ProgressSoft, specializing in Java & Kotlin.
-                        I build microservices and payment processing platforms handling SWIFT
-                        integrations and Visa transactions.
+                        {hero.description}
                     </p>
 
                     <div className="flex flex-wrap items-center gap-4">
                         <Button size="lg" asChild>
-                            <Link href="/projects">View Projects</Link>
+                            <Link href={hero.cta.primary.href}>{hero.cta.primary.text}</Link>
                         </Button>
                         <Button variant="secondary" size="lg" asChild>
-                            <Link href="/blog">Read Blog</Link>
+                            <Link href={hero.cta.secondary.href}>{hero.cta.secondary.text}</Link>
                         </Button>
                     </div>
 
@@ -80,7 +79,7 @@ export function HeroSection() {
                         href="#projects"
                         className="flex flex-col items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
                     >
-                        <span className="text-xs uppercase tracking-widest">Scroll</span>
+                        <span className="text-xs uppercase tracking-widest">{hero.scrollText}</span>
                         <ArrowDown className="h-4 w-4 animate-bounce" />
                     </Link>
                 </div>

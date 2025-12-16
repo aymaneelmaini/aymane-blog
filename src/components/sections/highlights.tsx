@@ -2,34 +2,34 @@ import { Container } from '@/components/ui/container'
 
 const quickStats = [
     {
-        icon: '💳',
-        title: 'Payment Systems Expert',
-        description: 'Building SWIFT & Visa transaction processing at scale',
+        icon: '🔧',
+        title: 'Discovering Compilers & Interpreters',
+        description: 'Currently reading Crafting Interpreters and building my own interpreter and compiler from scratch',
     },
     {
-        icon: '🏗️',
-        title: 'Microservices Architect',
-        description: 'Designing scalable distributed systems with Spring Boot',
+        icon: '⚙️',
+        title: 'Systems Programming Enthusiast',
+        description: 'Diving deep into C and exploring how things work at the low level',
     },
     {
-        icon: '🎯',
+        icon: '🏛️',
         title: 'Domain-Driven Design',
-        description: 'Applying DDD principles to complex business domains',
+        description: 'Big fan of DDD, I apply its principles to model complex business domains',
     },
     {
-        icon: '⚡',
-        title: 'Performance Focused',
-        description: 'Optimizing systems to handle millions of transactions',
+        icon: 'λ',
+        title: 'Functional Programming',
+        description: 'Lover of functional programming. "Everything is a value"',
     },
     {
-        icon: '🔄',
-        title: 'Legacy Modernization',
-        description: 'Transforming legacy codebases into modern architectures',
+        icon: '☕',
+        title: 'JVM Nerd',
+        description: 'I love the JVM, how it reacts to my code, the basics of bytecode generation, and especially Kotlin',
     },
     {
-        icon: '🚀',
-        title: 'Full-Stack Capable',
-        description: 'From Spring Boot APIs to React & Next.js frontends',
+        icon: '🧪',
+        title: 'Obsessed with Testing',
+        description: 'Testing libraries are the first thing I look for in a new language. I use BDD and TDD when they make sense',
     },
 ]
 
@@ -44,7 +44,7 @@ const whatIDo = [
         icon: '🏛️',
         title: 'Enterprise Architecture',
         description:
-            'Designing and implementing microservices architectures that scale, using Spring Boot, Kafka, and event-driven patterns.',
+            'Designing and implementing microservices architectures that scale, using DDD and Functional Core, Imperative Shell patterns.',
     },
     {
         icon: '🧪',
@@ -56,7 +56,7 @@ const whatIDo = [
         icon: '🔧',
         title: 'Backend Development',
         description:
-            'Crafting clean, maintainable code in Java and Kotlin with focus on SOLID principles and clean architecture.',
+            'Crafting clean, maintainable code in Java and Kotlin with a focus on SOLID principles and clean architecture.',
     },
 ]
 

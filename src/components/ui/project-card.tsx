@@ -7,6 +7,7 @@ import { ProjectCardProps } from '@/types/project'
 export function ProjectCard({
     title,
     description,
+    longDescription,
     slug,
     thumbnailUrl,
     liveUrl,
@@ -22,22 +23,17 @@ export function ProjectCard({
                 featured && 'md:col-span-2'
             )}
         >
-            <div className="relative aspect-video w-full overflow-hidden bg-muted">
-                {thumbnailUrl ? (
+            {thumbnailUrl && (
+                <div className="relative aspect-video w-full overflow-hidden bg-muted">
                     <Image
                         src={thumbnailUrl}
                         alt={title}
                         fill
                         className="object-cover transition-transform duration-300 group-hover:scale-105"
+                        unoptimized
                     />
-                ) : (
-                    <div className="flex h-full items-center justify-center border-b border-dashed border-border">
-                        <span className="text-5xl font-bold text-muted-foreground/20">
-                            {title.charAt(0)}
-                        </span>
-                    </div>
-                )}
-            </div>
+                </div>
+            )}
 
             <div className="flex flex-1 flex-col p-6">
                 <div className="mb-3 flex items-start justify-between gap-4">
@@ -68,9 +64,16 @@ export function ProjectCard({
                     </div>
                 </div>
 
-                <p className="mb-4 flex-1 text-sm leading-relaxed text-muted-foreground">
-                    {description}
-                </p>
+                <div className="mb-4 flex-1 space-y-3">
+                    <p className="text-sm font-medium leading-relaxed">
+                        {description}
+                    </p>
+                    {longDescription && (
+                        <p className="text-sm leading-relaxed text-muted-foreground">
+                            {longDescription}
+                        </p>
+                    )}
+                </div>
 
                 <div className="flex flex-wrap gap-2 border-t border-dashed border-border pt-4">
                     {techStack.map((tech) => (

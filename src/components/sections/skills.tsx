@@ -1,34 +1,15 @@
 import { Container } from '@/components/ui/container'
 import { SectionHeader } from '@/components/ui/section-header'
-import { db } from '@/lib/db'
+import skillsData from '@/data/skills.json'
+import content from '@/data/content.json'
 
-async function getSkills() {
-    const skills = await db.skill.findMany({
-        orderBy: [{ category: 'asc' }, { order: 'asc' }, { name: 'asc' }],
-    })
-
-    if (skills.length === 0) {
-        return null
-    }
-
-    const grouped = skills.reduce((acc, skill) => {
-        if (!acc[skill.category]) {
-            acc[skill.category] = []
-        }
-        acc[skill.category].push(skill.name)
-        return acc
-    }, {} as Record<string, string[]>)
-
-    return Object.entries(grouped).map(([title, skills]) => ({
-        title,
-        skills,
+export function SkillsSection() {
+    const formattedCategories = skillsData.skillCategories.map((cat) => ({
+        title: cat.category,
+        skills: cat.skills.map((s) => s.name),
     }))
-}
 
-export async function SkillsSection() {
-    const skillCategories = await getSkills()
-
-    if (!skillCategories) {
+    if (formattedCategories.length === 0) {
         return null
     }
 
@@ -36,12 +17,12 @@ export async function SkillsSection() {
         <section id="skills" className="border-t border-dashed border-border py-24 sm:py-32">
             <Container>
                 <SectionHeader
-                    title="Skills"
-                    description="Technologies and tools I work with daily."
+                    title={content.sections.skills.title}
+                    description={content.sections.skills.description}
                 />
 
                 <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                    {skillCategories.map((category) => (
+                    {formattedCategories.map((category) => (
                         <div key={category.title} className="space-y-4">
                             <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
                                 {category.title}
