@@ -45,7 +45,6 @@ export function getAllPosts(): BlogPost[] {
         }
     })
 
-    // Filter published posts and sort by date
     return posts
         .filter((post) => post.published)
         .sort((a, b) => b.publishedAt.getTime() - a.publishedAt.getTime())

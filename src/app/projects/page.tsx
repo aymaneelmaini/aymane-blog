@@ -51,6 +51,8 @@ async function getGitHubRepos(): Promise<GitHubRepo[]> {
 
         return repos
             .filter((repo) => !repo.fork && !repo.archived)
+            .slice(0, 10)
+
     } catch (error) {
         console.error('Failed to fetch GitHub repos:', error)
         return []
