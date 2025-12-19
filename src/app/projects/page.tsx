@@ -106,7 +106,7 @@ export default async function ProjectsPage() {
                                     {content.pages.projects.openSourceTitle}
                                 </h2>
 
-                                <a href="https://github.com/AymaneTech"
+                                <a href="https://github.com/aymaneelmaini"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="text-sm text-muted-foreground transition-colors hover:text-foreground">
